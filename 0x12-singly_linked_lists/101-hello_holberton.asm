@@ -1,5 +1,5 @@
-ection .data
-    hello_msg db 'Hello, Holberton', 10, 0
+section .data
+    hello_fmt db "Hello, Holberton", 10, 0 ; Format string for printf
 
 section .text
     global main
@@ -7,13 +7,10 @@ section .text
 
 main:
     push rbp
-    mov rbp, rsp
-
-    mov rdi, hello_msg
-    xor eax, eax
+    mov rdi, hello_fmt
     call printf
+    add rsp, 8  ; Clean up the stack (8 bytes for one argument)
 
-    mov rsp, rbp
     pop rbp
-    xor eax, eax
+    xor rax, rax
     ret
